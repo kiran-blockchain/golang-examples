@@ -12,5 +12,4 @@ func main() {
 
 func variadicExample(s ...string) {
 	fmt.Println(s)
-	fmt.Printf("%p",&s)
 }

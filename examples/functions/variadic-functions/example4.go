@@ -12,6 +12,6 @@ func main() {
 
 func variadicExample(i ...interface{}) {
 	for _, v := range i {
-		fmt.Println(v, "--", reflect.TypeOf(v))
+		fmt.Println(v, "--", reflect.ValueOf(v).Kind())
 	}
 }

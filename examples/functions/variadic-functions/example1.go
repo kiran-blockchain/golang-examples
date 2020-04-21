@@ -3,14 +3,10 @@ package main
 import "fmt"
 
 func main() {
-
-	variadicExample()
-	variadicExample("red", "blue")
-	variadicExample("red", "blue", "green")
 	variadicExample("red", "blue", "green", "yellow")
 }
 
 func variadicExample(s ...string) {
-	fmt.Println(s)
-	fmt.Printf("%p",&s)
+	fmt.Println(s[0])
+	fmt.Println(s[3])
 }
