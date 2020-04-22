@@ -1,0 +1,22 @@
+1. have a cleaner architecture
+    -src
+    -pkg
+      -- contains all the package refer
+
+    -cmd
+       example_test.go
+    -api
+        api_test.go
+
+Commands for profiling
+
+go tool pprof --pdf ./profile  memprofile> memprofile.pdf
+
+
+
+Mutex try to avoid.
+organise code in smaller functions
+predict errors in advnace and have the panic/defer and Recover 
+publisher and subscriber model for go routines
+try to go with predicted size for arrays
+in the maps while creating key pairs try to int as keys
