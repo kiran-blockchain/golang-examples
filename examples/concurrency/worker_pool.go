@@ -16,8 +16,8 @@ type Result struct {
 	sumofdigits int
 }
 
-var jobs = make(chan Job, 10)
-var results = make(chan Result, 10)
+var jobs = make(chan Job, 1)
+var results = make(chan Result, 1)
 
 func digits(number int) int {
 	sum := 0
@@ -50,12 +50,17 @@ func allocate(noOfJobs int) {
 	for i := 0; i < noOfJobs; i++ {
 		randomno := rand.Intn(999)
 		job := Job{i, randomno}
+		//fmt.Println("length of jobs", len(jobs))
 		jobs <- job
+
 	}
+	///	fmt.Println("length of jobs", len(jobs))
+	fmt.Println("", cap(jobs))
 	close(jobs)
 }
 func result(done chan bool) {
 	for result := range results {
+		//fmt.Println("length of jobs", len(jobs))
 		fmt.Printf("Job id %d, input random no %d , sum of digits %d\n", result.job.id, result.job.randomno, result.sumofdigits)
 	}
 	done <- true
@@ -66,9 +71,10 @@ func main() {
 	go allocate(noOfJobs)
 	done := make(chan bool)
 	go result(done)
-	noOfWorkers := 10
+	noOfWorkers := 100
 	createWorkerPool(noOfWorkers)
-	<-done
+	<-done // done
+
 	endTime := time.Now()
 	diff := endTime.Sub(startTime)
 	fmt.Println("total time taken ", diff.Seconds(), "seconds")

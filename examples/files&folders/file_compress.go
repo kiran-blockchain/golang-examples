@@ -36,7 +36,7 @@ func main() {
 	}
 	defer file.Close()
 
-	var files = []string{"test1.txt", "test2.txt", "test3.txt"}
+	var files = []string{"test1.txt", "test2.txt"}
 
 	zipw := zip.NewWriter(file)
 	defer zipw.Close()
